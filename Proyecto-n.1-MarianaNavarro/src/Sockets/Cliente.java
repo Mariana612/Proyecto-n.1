@@ -24,6 +24,10 @@ class Interaccion  extends JPanel{
     private JTextField field1;
     private JButton boton1;
     private JLabel label1;
+    private JTextArea area1;
+    private JScrollPane scroll;
+    
+    String texto = "";
     
     public Interaccion (){
         setLayout(null);
@@ -42,6 +46,12 @@ class Interaccion  extends JPanel{
         boton1.addActionListener(evento);
         add(boton1);
         
+        area1 = new JTextArea();
+        area1.setEditable(false);
+        scroll = new JScrollPane(area1);
+        scroll.setBounds(400,50,830,650);
+        add(scroll);
+        
         
         
                 
@@ -50,9 +60,13 @@ class Interaccion  extends JPanel{
         public void actionPerformed(ActionEvent e){
             try {
                 Socket socketClient = new Socket("127.0.0.1",9000);
+                
                 DataOutputStream text_Env = new DataOutputStream(socketClient.getOutputStream());
                 text_Env.writeUTF(field1.getText());
                 text_Env.close();
+                texto+= field1.getText()+"\n";
+                area1.setText(texto);
+                field1.setText("");
                 
             }catch(UnknownHostException e1){
                 e1.printStackTrace();
