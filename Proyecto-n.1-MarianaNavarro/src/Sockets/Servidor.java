@@ -3,6 +3,8 @@ package Sockets;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 class PantallaIniServ extends JFrame implements Runnable{
@@ -29,19 +31,36 @@ class PantallaIniServ extends JFrame implements Runnable{
         
         try {
             ServerSocket servidor = new ServerSocket(9000);
+            String nombre, ip, mensaje;
+            PaqueteEnvio paqueterecibido;
+            
             while(true){
                 Socket socketServ = servidor.accept();
-                DataInputStream tex_entrada = new DataInputStream(socketServ.getInputStream());
-                String mensajeTxt = tex_entrada.readUTF();
-                area1.append( mensajeTxt+"\n"  );
+                ObjectInputStream paqueteDatos = new ObjectInputStream(socketServ.getInputStream());
+                paqueterecibido = (PaqueteEnvio)paqueteDatos.readObject();
+                nombre =  paqueterecibido.getNombre();
+                ip = paqueterecibido.getIp();
+                mensaje = paqueterecibido.getMensaje();
+                
+                area1.append(nombre + ":     " +mensaje+ "\n"  );
+                Socket eviarDestino = new Socket(ip, 9050);
+                ObjectOutputStream Reenvio = new ObjectOutputStream(eviarDestino.getOutputStream());
+                Reenvio.writeObject(paqueterecibido);
+                
+                eviarDestino.close();
                 socketServ.close();
+                
+                /* DataInputStream tex_entrada = new DataInputStream(socketServ.getInputStream());
+                String mensajeTxt = tex_entrada.readUTF();
+                ;
+                socketServ.close();*/
             }
             
-        } catch (IOException ex) {
+        } catch (IOException | ClassNotFoundException  ex) {
             System.out.println(ex.getMessage());
             
             
-        }
+        } 
         
     }
     class InteraccionServ  extends JPanel{
