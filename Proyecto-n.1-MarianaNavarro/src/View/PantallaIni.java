@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 public class PantallaIni extends JFrame{
     private JTextField mensaje, ip , nombre, puerto;
     private JButton boton1;
-    private JLabel label1;
+    private JLabel label1,labelPuerto,labelIp,labelNombre;
     private JTextArea area1;
     private JScrollPane scroll;
     
@@ -46,6 +46,18 @@ public class PantallaIni extends JFrame{
         label1 = new JLabel("Ingrese un Mensaje");
         label1.setBounds(400,710,112,15);
         add(label1);
+        
+        labelNombre = new JLabel("Ingrese su Nombre");
+        labelNombre.setBounds(10,0,200,15);
+        add(labelNombre);
+        
+        labelIp = new JLabel("Ip");
+        labelIp.setBounds(400,0,40,15);
+        add(labelIp);
+        
+        labelPuerto = new JLabel("Puerto");
+        labelPuerto.setBounds(520,0,40,15);
+        add(labelPuerto);
         
         mensaje = new JTextField();
         mensaje.setBounds(520,710,600,20);
