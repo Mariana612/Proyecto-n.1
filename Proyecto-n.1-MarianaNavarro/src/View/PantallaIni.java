@@ -1,8 +1,5 @@
 package View;
 
-/*
-import Sockets.Interaccion;
-import Sockets.Interaccion;*/
 
 import Logica.PantallaControl;
 import javax.swing.JButton;
@@ -30,16 +27,16 @@ public class PantallaIni extends JFrame{
         setResizable(false);
 
         iniComponentes(ctrl);
-        
-        //Interaccion inteCliente = new Interaccion ();
-        //add(inteCliente);
-        
 
         setVisible(true);
         
         
     }
-    
+    /*clase PantallaIni
+    crea los elementos existentes dentro del JFrame
+    entradas: ctrl
+    salidas: JTextField, JButton, JLabel, JTextArea, JScrollPane
+    */
     private void iniComponentes(PantallaControl ctrl){
         
         

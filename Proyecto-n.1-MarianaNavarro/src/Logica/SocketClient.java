@@ -7,7 +7,7 @@ import java.net.Socket;
 
 
 public class SocketClient {
-    public static void sendPaquete(PaqueteEnvio paquete){
+    public static void sendPaquete(PaqueteEnvio paquete){ //Se crea el socket del cliente, donde se obtoene el paquete de informacion
         try{
             
             Socket destino = new Socket(paquete.getIp(), Integer.parseInt(paquete.getPuerto()));

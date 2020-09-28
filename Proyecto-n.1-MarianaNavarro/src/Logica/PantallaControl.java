@@ -10,7 +10,8 @@ public class PantallaControl implements ActionListener{
     PantallaIni vista;
     static PantallaControl instancia = null;
     
-    public static PantallaControl getInstance(){
+    
+    public static PantallaControl getInstance(){ //se obtiene la instancia de la clase
         if(instancia == null){
             instancia = new PantallaControl();
         }
@@ -19,13 +20,18 @@ public class PantallaControl implements ActionListener{
     
     private PantallaControl(){
         vista = new PantallaIni(this);
-        Servidor.ServerIni(9001);
+        Servidor.ServerIni(9999);
     }
     
     public void infoRecibido(PaqueteEnvio info){
         vista.printMensaje(info.getNombre()+":    " + info.getMensaje()+"\n" );
     }
-
+    /*
+    actionPerformed
+    al detectar una accion se actualiza el JTextArea con la informacion obtenirda de vista. Además, envía el paquete de informacion con datos obtenidos de vista. 
+    entradas: evento
+    salidas: SocketClient
+    */
     @Override
     public void actionPerformed(ActionEvent e) {
         vista.printMensaje(vista.getNombre()+":    " + vista.getMensaje()+"\n" );

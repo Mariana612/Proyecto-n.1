@@ -16,7 +16,12 @@ public class Servidor implements Runnable{
         this.puerto = puerto;
         
     }
-    
+    /*
+    Server Ini
+    se crea un thread para el ServerSocket
+    entrada: puerto
+    salidas: -
+    */
     public static void ServerIni(int puerto){
         Servidor server = new Servidor(puerto);
         Thread hilo = new Thread(server);
@@ -27,7 +32,7 @@ public class Servidor implements Runnable{
     @Override
     public void run() {
         try {
-            ServerSocket servidor = new ServerSocket(puerto);
+            ServerSocket servidor = new ServerSocket(puerto);  //se crea el ServerSocket y se crea un loop para aceptar la coneccion con el servidor
             while(true){
                 Socket socketServ = servidor.accept();
                 

@@ -3,8 +3,9 @@ package Logica;
 
 import java.io.Serializable;
 
-class PaqueteEnvio implements Serializable{
-    private String nombre, ip, mensaje, puerto;
+class PaqueteEnvio implements Serializable{ 
+    
+    private String nombre, ip, mensaje, puerto; //Objetos Serializables que se envian por el socket
     
     public String getNombre(){
         return nombre;
